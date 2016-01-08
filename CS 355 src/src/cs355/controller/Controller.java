@@ -5,8 +5,12 @@ import java.awt.event.MouseEvent;
 import java.io.File;
 import java.util.Iterator;
 
+import cs355.GUIFunctions;
+
 public class Controller implements CS355Controller {
 
+	private boolean shapeSelected = false;
+	
 	@Override
 	public void mouseClicked(MouseEvent arg0) {
 		// TODO Auto-generated method stub
@@ -45,8 +49,9 @@ public class Controller implements CS355Controller {
 
 	@Override
 	public void mouseMoved(MouseEvent arg0) {
-		// TODO Auto-generated method stub
-
+		if(shapeSelected) {
+			GUIFunctions.refresh();
+		}
 	}
 
 	@Override

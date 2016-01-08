@@ -3,6 +3,7 @@ package cs355.model.drawing;
 import java.awt.Color;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Observable;
 import java.util.Observer;
 
 public class Model extends CS355Drawing {
@@ -22,7 +23,7 @@ public class Model extends CS355Drawing {
 		return _instance;
 	}
 	
-	private Model() {
+	public Model() {
 		selectedColor = Color.WHITE;
 		shapes = new ArrayList<Shape>();
 		observers = new ArrayList<Observer>();
@@ -30,20 +31,18 @@ public class Model extends CS355Drawing {
 	
 	@Override
 	public Shape getShape(int index) {
-		// TODO Auto-generated method stub
-		return null;
+		return shapes.get(index);
 	}
 
 	@Override
 	public int addShape(Shape s) {
-		// TODO Auto-generated method stub
-		return 0;
+		shapes.add(s);
+		return shapes.size();
 	}
 
 	@Override
 	public void deleteShape(int index) {
-		// TODO Auto-generated method stub
-		
+		shapes.remove(index);
 	}
 
 	@Override
@@ -72,8 +71,7 @@ public class Model extends CS355Drawing {
 
 	@Override
 	public List<Shape> getShapes() {
-		// TODO Auto-generated method stub
-		return null;
+		return shapes;
 	}
 
 	@Override
@@ -87,5 +85,4 @@ public class Model extends CS355Drawing {
 		// TODO Auto-generated method stub
 		
 	}
-
 }
