@@ -21,7 +21,7 @@ public class CS355 {
 		Controller controller = new Controller();
 		View view = new View();
 		Model.instance().addObserver(view);
-		// Fill in the parameters below with your controller and view.
+		
 		GUIFunctions.createCS355Frame(controller, view);
 
 		GUIFunctions.refresh();
