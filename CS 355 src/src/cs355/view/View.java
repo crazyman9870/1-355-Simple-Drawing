@@ -1,8 +1,11 @@
 package cs355.view;
 
 import java.awt.Graphics2D;
+import java.awt.Polygon;
+import java.awt.geom.Ellipse2D;
 import java.awt.geom.Line2D;
 import java.awt.geom.Point2D;
+import java.awt.geom.Rectangle2D;
 import java.util.ArrayList;
 import java.util.Observable;
 
@@ -41,6 +44,76 @@ public class View implements ViewRefresher {
 			Point2D.Double end = new Point2D.Double(line.getEnd().x, line.getEnd().y);
 			
 			return new Line2D.Double(start.x, start.y, end.x, end.y);
+		}
+
+		if(currentShape instanceof Square)
+		{
+			//create a Rectangle2D object and return it
+			double x = ((Square) currentShape).getUpperLeft().x;
+			double y = ((Square) currentShape).getUpperLeft().y;
+			double width = ((Square) currentShape).getSize();
+			
+			return new Rectangle2D.Double(x, y, width, width);
+		}
+		
+		if(currentShape instanceof Rectangle)
+		{
+			//create a Rectangle2D object and return it
+			double x = ((Rectangle) currentShape).getUpperLeft().x;
+			double y = ((Rectangle) currentShape).getUpperLeft().y;
+			double width = ((Rectangle) currentShape).getWidth();
+			double height = ((Rectangle) currentShape).getHeight();
+			
+			return new Rectangle2D.Double(x, y, width, height);
+		}
+		
+		if(currentShape instanceof Circle)
+		{
+			//create a Rectangle2D object and return it
+			double x = ((Circle) currentShape).getUpperLeft().x;
+			double y = ((Circle) currentShape).getUpperLeft().y;
+			double radius = ((Circle) currentShape).getRadius();
+			
+			return new Ellipse2D.Double(x, y, radius * 2, radius * 2);
+		}
+		
+		if(currentShape instanceof Ellipse)
+		{
+			//create a Rectangle2D object and return it
+			double x = ((Ellipse) currentShape).getUpperLeft().x;
+			double y = ((Ellipse) currentShape).getUpperLeft().y;
+			double width = ((Ellipse) currentShape).getWidth();
+			double height = ((Ellipse) currentShape).getHeight();
+			
+			return new Ellipse2D.Double(x, y, width, height);
+		}
+		
+		if(currentShape instanceof Triangle)
+		{
+			//create a Rectangle2D object and return it
+			if(((Triangle) currentShape).getCornerCount() == 3)
+			{
+				int[] x = new int[3];
+				int[] y = new int[3];
+				
+				x[0] = (int) ((Triangle) currentShape).getA().x;
+				x[1] = (int) ((Triangle) currentShape).getB().x;
+				x[2] = (int) ((Triangle) currentShape).getC().x;
+				
+				y[0] = (int) ((Triangle) currentShape).getA().y;
+				y[1] = (int) ((Triangle) currentShape).getB().y;
+				y[2] = (int) ((Triangle) currentShape).getC().y;
+				
+				Polygon tri = new Polygon();
+				tri.addPoint(x[0], y[0]);
+				tri.addPoint(x[1], y[1]);
+				tri.addPoint(x[2], y[2]);
+				return tri;
+			}
+			else
+			{
+				return null;
+			}
 		}
 		
 		return null;

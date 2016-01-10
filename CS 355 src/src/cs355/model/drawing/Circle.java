@@ -11,6 +11,8 @@ public class Circle extends Shape {
 
 	// The center of this shape.
 	private Point2D.Double center;
+	private Point2D.Double upperLeft;
+	private Point2D.Double firstCorner;
 
 	// The radius.
 	private double radius;
@@ -28,6 +30,8 @@ public class Circle extends Shape {
 
 		// Set fields.
 		this.center = center;
+		this.upperLeft = center;
+		this.firstCorner = center;
 		this.radius = radius;
 	}
 
@@ -61,5 +65,21 @@ public class Circle extends Shape {
 	 */
 	public void setRadius(double radius) {
 		this.radius = radius;
+	}
+
+	public Point2D.Double getUpperLeft() {
+		return upperLeft;
+	}
+
+	public void setUpperLeft(Point2D.Double upperLeft) {
+		this.upperLeft = upperLeft;
+	}
+
+	public Point2D.Double getFirstCorner() {
+		return firstCorner;
+	}
+
+	public void setFirstCorner(Point2D.Double firstCorner) {
+		this.firstCorner = firstCorner;
 	}
 }
