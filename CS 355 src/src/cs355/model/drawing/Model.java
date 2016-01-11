@@ -3,7 +3,6 @@ package cs355.model.drawing;
 import java.awt.Color;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Observable;
 import java.util.Observer;
 
 public class Model extends CS355Drawing {
@@ -11,7 +10,7 @@ public class Model extends CS355Drawing {
 	//Use a singleton so that the model can be accessed by the view when repainting
 	private static Model _instance;
 	
-	public int currentMode = -1;
+	private int currentMode = -1;
 	private Color selectedColor;
 	private ArrayList<Shape> shapes;
 	private ArrayList<Observer> observers;
@@ -27,6 +26,22 @@ public class Model extends CS355Drawing {
 		selectedColor = Color.WHITE;
 		shapes = new ArrayList<Shape>();
 		observers = new ArrayList<Observer>();
+	}
+	
+	public void setColor(Color c) {	
+		selectedColor = c;	
+		setChanged();
+		notifyObservers();
+	}
+	
+	public Color getColor()	{
+		return selectedColor;
+	}
+	
+	//Notifies the observers
+	public void notifyObservers() {
+		super.notifyObservers();
+		System.out.println("Update Issued");
 	}
 	
 	@Override
@@ -82,7 +97,26 @@ public class Model extends CS355Drawing {
 
 	@Override
 	public void setShapes(List<Shape> shapes) {
-		// TODO Auto-generated method stub
-		
+		this.shapes = (ArrayList<Shape>) shapes;
+	}
+
+	public int getCurrentMode() {
+		return currentMode;
+	}
+
+	public void setCurrentMode(int currentMode) {
+		this.currentMode = currentMode;
+	}
+
+	public Color getSelectedColor() {
+		return selectedColor;
+	}
+
+	public void setSelectedColor(Color selectedColor) {
+		this.selectedColor = selectedColor;
+	}
+
+	public void setShapes(ArrayList<Shape> shapes) {
+		this.shapes = shapes;
 	}
 }

@@ -6,6 +6,7 @@ import java.io.File;
 import java.util.Iterator;
 
 import cs355.GUIFunctions;
+import cs355.model.drawing.Model;
 
 public class Controller implements CS355Controller {
 
@@ -13,8 +14,12 @@ public class Controller implements CS355Controller {
 	
 	@Override
 	public void mouseClicked(MouseEvent arg0) {
-		// TODO Auto-generated method stub
-
+		if(shapeSelected) {
+			
+		}
+		else {
+			
+		}
 	}
 
 	@Override
@@ -56,44 +61,38 @@ public class Controller implements CS355Controller {
 
 	@Override
 	public void colorButtonHit(Color c) {
-		// TODO Auto-generated method stub
-
+		Model.instance().setColor(c);
+		GUIFunctions.changeSelectedColor(c);
 	}
 
 	@Override
 	public void lineButtonHit() {
-		// TODO Auto-generated method stub
-
+		Model.instance().setCurrentMode(1);
 	}
 
 	@Override
 	public void squareButtonHit() {
-		// TODO Auto-generated method stub
-
+		Model.instance().setCurrentMode(2);
 	}
 
 	@Override
 	public void rectangleButtonHit() {
-		// TODO Auto-generated method stub
-
+		Model.instance().setCurrentMode(3);
 	}
 
 	@Override
 	public void circleButtonHit() {
-		// TODO Auto-generated method stub
-
+		Model.instance().setCurrentMode(4);
 	}
 
 	@Override
 	public void ellipseButtonHit() {
-		// TODO Auto-generated method stub
-
+		Model.instance().setCurrentMode(5);
 	}
 
 	@Override
 	public void triangleButtonHit() {
-		// TODO Auto-generated method stub
-
+		Model.instance().setCurrentMode(6);
 	}
 
 	@Override

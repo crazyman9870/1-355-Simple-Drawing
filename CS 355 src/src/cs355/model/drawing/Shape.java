@@ -11,6 +11,11 @@ public abstract class Shape {
 
 	// The color of this shape.
 	protected Color color;
+	public enum type {
+		CIRCLE, ELLIPSE, LINE, RECTANGLE, SQUARE, TRIANGLE
+	}
+	
+	private type shapeType;
 
 	/**
 	 * Basic constructor that sets the field.
@@ -34,5 +39,13 @@ public abstract class Shape {
 	 */
 	public void setColor(Color color) {
 		this.color = color;
+	}
+
+	public type getShapeType() {
+		return shapeType;
+	}
+
+	public void setShapeType(type shapeType) {
+		this.shapeType = shapeType;
 	}
 }

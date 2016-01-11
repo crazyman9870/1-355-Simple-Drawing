@@ -11,7 +11,6 @@ import java.util.Observable;
 
 import cs355.GUIFunctions;
 import cs355.model.drawing.*;
-import cs355.model.scene.Instance;
 
 public class View implements ViewRefresher {
 
@@ -34,11 +33,9 @@ public class View implements ViewRefresher {
 	}
 	
 	//Use a factory to determine what type is being dealt with
-	//TODO Needs to add logic for the rest of the shapes
-	public java.awt.Shape shapeFactory(Shape currentShape)
-	{
-		if(currentShape instanceof Line)
-		{
+	public java.awt.Shape shapeFactory(Shape currentShape) {
+		
+		if(currentShape.getShapeType() == Shape.type.LINE) {
 			Line line = (Line)currentShape;
 			Point2D.Double start = new Point2D.Double(line.getStart().x, line.getStart().y);		
 			Point2D.Double end = new Point2D.Double(line.getEnd().x, line.getEnd().y);
@@ -46,9 +43,8 @@ public class View implements ViewRefresher {
 			return new Line2D.Double(start.x, start.y, end.x, end.y);
 		}
 
-		if(currentShape instanceof Square)
-		{
-			//create a Rectangle2D object and return it
+		if(currentShape.getShapeType() == Shape.type.SQUARE) {
+			//create a Square from Rectangle2D object and return it
 			double x = ((Square) currentShape).getUpperLeft().x;
 			double y = ((Square) currentShape).getUpperLeft().y;
 			double width = ((Square) currentShape).getSize();
@@ -56,8 +52,7 @@ public class View implements ViewRefresher {
 			return new Rectangle2D.Double(x, y, width, width);
 		}
 		
-		if(currentShape instanceof Rectangle)
-		{
+		if(currentShape.getShapeType() == Shape.type.RECTANGLE)	{
 			//create a Rectangle2D object and return it
 			double x = ((Rectangle) currentShape).getUpperLeft().x;
 			double y = ((Rectangle) currentShape).getUpperLeft().y;
@@ -67,9 +62,8 @@ public class View implements ViewRefresher {
 			return new Rectangle2D.Double(x, y, width, height);
 		}
 		
-		if(currentShape instanceof Circle)
-		{
-			//create a Rectangle2D object and return it
+		if(currentShape.getShapeType() == Shape.type.CIRCLE) {
+			//create a Circle2D object and return it
 			double x = ((Circle) currentShape).getUpperLeft().x;
 			double y = ((Circle) currentShape).getUpperLeft().y;
 			double radius = ((Circle) currentShape).getRadius();
@@ -77,9 +71,8 @@ public class View implements ViewRefresher {
 			return new Ellipse2D.Double(x, y, radius * 2, radius * 2);
 		}
 		
-		if(currentShape instanceof Ellipse)
-		{
-			//create a Rectangle2D object and return it
+		if(currentShape.getShapeType() == Shape.type.ELLIPSE) {
+			//create a Ellipse2D object and return it
 			double x = ((Ellipse) currentShape).getUpperLeft().x;
 			double y = ((Ellipse) currentShape).getUpperLeft().y;
 			double width = ((Ellipse) currentShape).getWidth();
@@ -88,9 +81,8 @@ public class View implements ViewRefresher {
 			return new Ellipse2D.Double(x, y, width, height);
 		}
 		
-		if(currentShape instanceof Triangle)
-		{
-			//create a Rectangle2D object and return it
+		if(currentShape.getShapeType() == Shape.type.TRIANGLE) {
+			//create a triangle from a Polygon and return it
 			if(((Triangle) currentShape).getCornerCount() == 3)
 			{
 				int[] x = new int[3];
