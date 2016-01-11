@@ -9,6 +9,9 @@ import java.awt.geom.Point2D;
  */
 public class Rectangle extends Shape {
 
+	// First click origin
+	private Point2D.Double origin;
+	
 	// The upper left corner of this shape.
 	private Point2D.Double upperLeft;
 
@@ -32,11 +35,20 @@ public class Rectangle extends Shape {
 		super.setShapeType(Shape.type.RECTANGLE);
 
 		// Set fields.
+		this.origin = upperLeft;
 		this.upperLeft = upperLeft;
 		this.width = width;
 		this.height = height;
 	}
 
+	public Point2D.Double getOrigin() {
+		return origin;
+	}
+
+	public void setOrigin(Point2D.Double origin) {
+		this.origin = origin;
+	}
+	
 	/**
 	 * Getter for this Rectangle's upper left corner.
 	 * @return the upper left corner as a Java point.

@@ -31,11 +31,19 @@ public class Square extends Shape {
 		super.setShapeType(Shape.type.SQUARE);
 
 		// Set fields.
-		this.upperLeft = upperLeft;
 		this.origin = upperLeft;
+		this.upperLeft = upperLeft;
 		this.size = size;
 	}
 
+	public Point2D.Double getOrigin() {
+		return origin;
+	}
+
+	public void setOrigin(Point2D.Double origin) {
+		this.origin = origin;
+	}
+	
 	/**
 	 * Getter for this Rectangle's upper left corner.
 	 * @return the upper left corner as a Java point.
@@ -50,14 +58,6 @@ public class Square extends Shape {
 	 */
 	public void setUpperLeft(Point2D.Double upperLeft) {
 		this.upperLeft = upperLeft;
-	}
-
-	public Point2D.Double getOrigin() {
-		return origin;
-	}
-
-	public void setOrigin(Point2D.Double origin) {
-		this.origin = origin;
 	}
 
 	/**
