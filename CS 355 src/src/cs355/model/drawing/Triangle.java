@@ -33,6 +33,8 @@ public class Triangle extends Shape {
 		this.a = a;
 		this.b = b;
 		this.c = c;
+		
+		cornerCount = 1;
 	}
 
 	/**

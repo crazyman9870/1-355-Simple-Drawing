@@ -10,7 +10,7 @@ public class Model extends CS355Drawing {
 	//Use a singleton so that the model can be accessed by the view when repainting
 	private static Model _instance;
 	
-	private int currentMode = -1;
+	private Shape.type currentMode = Shape.type.NONE;
 	private Color selectedColor;
 	private ArrayList<Shape> shapes;
 	private ArrayList<Observer> observers;
@@ -100,12 +100,13 @@ public class Model extends CS355Drawing {
 		this.shapes = (ArrayList<Shape>) shapes;
 	}
 
-	public int getCurrentMode() {
+	public Shape.type getCurrentMode() {
 		return currentMode;
 	}
 
-	public void setCurrentMode(int currentMode) {
+	public void setCurrentMode(Shape.type currentMode) {
 		this.currentMode = currentMode;
+		System.out.println(currentMode.name());
 	}
 
 	public Color getSelectedColor() {
@@ -118,5 +119,14 @@ public class Model extends CS355Drawing {
 
 	public void setShapes(ArrayList<Shape> shapes) {
 		this.shapes = shapes;
+	}
+	
+	public Shape getLastShape()
+	{	return shapes.get(shapes.size() - 1);	}
+	
+	public void setLastShape(Shape newShape)
+	{	
+		shapes.remove(shapes.size() - 1);
+		shapes.add(newShape);
 	}
 }

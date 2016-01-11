@@ -12,7 +12,7 @@ public abstract class Shape {
 	// The color of this shape.
 	protected Color color;
 	public enum type {
-		CIRCLE, ELLIPSE, LINE, RECTANGLE, SQUARE, TRIANGLE
+		CIRCLE, ELLIPSE, LINE, RECTANGLE, SQUARE, TRIANGLE, NONE
 	}
 	
 	private type shapeType;
