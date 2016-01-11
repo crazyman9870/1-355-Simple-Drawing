@@ -147,53 +147,53 @@ public class Controller implements CS355Controller {
 		
 		Square square = (Square) Model.instance().getLastShape();
 		//if the cursor is moving below the upper left corner
-		if(arg0.getY() > square.getUpperLeft().y)
+		if(arg0.getY() > square.getOrigin().y)
 		{
 			//if the cursor is moving to the bottom right quad
-			if(arg0.getX() > square.getUpperLeft().x)
+			if(arg0.getX() > square.getOrigin().x)
 			{
-				double lengthX = arg0.getX() - square.getUpperLeft().x;
-				double lengthY = arg0.getY() - square.getUpperLeft().y;
+				double lengthX = arg0.getX() - square.getOrigin().x;
+				double lengthY = arg0.getY() - square.getOrigin().y;
 				double newlength = Math.min(lengthX, lengthY);
 				
-				square.setUpperLeft(square.getUpperLeft());
+				square.setUpperLeft(square.getOrigin());
 				square.setSize(newlength);
 			}
 
 			//if the cursor is moving to the bottom left quad
-			if(arg0.getX() < square.getUpperLeft().x)
+			if(arg0.getX() < square.getOrigin().x)
 			{
-				double lengthX = square.getUpperLeft().x - arg0.getX();
-				double lengthY = arg0.getY() - square.getUpperLeft().y;
+				double lengthX = square.getOrigin().x - arg0.getX();
+				double lengthY = arg0.getY() - square.getOrigin().y;
 				double newlength = Math.min(lengthX, lengthY);
 				
-				square.setUpperLeft(new Point2D.Double(square.getUpperLeft().x - newlength, square.getUpperLeft().y));
+				square.setUpperLeft(new Point2D.Double(square.getOrigin().x - newlength, square.getOrigin().y));
 				square.setSize(newlength);
 			}
 		}
 
 		//if the cursor is moving above the upper left corner
-		if(arg0.getY() < square.getUpperLeft().y)
+		if(arg0.getY() < square.getOrigin().y)
 		{
 			//if the cursor is moving to the upper right quad
-			if(arg0.getX() > square.getUpperLeft().x)
+			if(arg0.getX() > square.getOrigin().x)
 			{
-				double lengthX = arg0.getX() - square.getUpperLeft().x;
-				double lengthY = square.getUpperLeft().y - arg0.getY();
+				double lengthX = arg0.getX() - square.getOrigin().x;
+				double lengthY = square.getOrigin().y - arg0.getY();
 				double newlength = Math.min(lengthX, lengthY);
 				
-				square.setUpperLeft(new Point2D.Double(square.getUpperLeft().x, square.getUpperLeft().y  - newlength));
+				square.setUpperLeft(new Point2D.Double(square.getOrigin().x, square.getOrigin().y  - newlength));
 				square.setSize(newlength);
 			}
 
 			//if the cursor is moving to the upper left quad
-			if(arg0.getX() < square.getUpperLeft().x)
+			if(arg0.getX() < square.getOrigin().x)
 			{
-				double lengthX = square.getUpperLeft().x - arg0.getX();
-				double lengthY = square.getUpperLeft().y - arg0.getY();
+				double lengthX = square.getOrigin().x - arg0.getX();
+				double lengthY = square.getOrigin().y - arg0.getY();
 				double newlength = Math.min(lengthX, lengthY);
 				
-				square.setUpperLeft(new Point2D.Double(square.getUpperLeft().x - newlength, square.getUpperLeft().y - newlength));
+				square.setUpperLeft(new Point2D.Double(square.getOrigin().x - newlength, square.getOrigin().y - newlength));
 				square.setSize(newlength);
 			}
 		}

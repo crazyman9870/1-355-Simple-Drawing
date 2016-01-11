@@ -9,6 +9,9 @@ import java.awt.geom.Point2D;
  */
 public class Square extends Shape {
 
+	// First click origin
+	private Point2D.Double origin;
+	
 	// The upper left corner of this shape.
 	private Point2D.Double upperLeft;
 
@@ -29,6 +32,7 @@ public class Square extends Shape {
 
 		// Set fields.
 		this.upperLeft = upperLeft;
+		this.origin = upperLeft;
 		this.size = size;
 	}
 
@@ -46,6 +50,14 @@ public class Square extends Shape {
 	 */
 	public void setUpperLeft(Point2D.Double upperLeft) {
 		this.upperLeft = upperLeft;
+	}
+
+	public Point2D.Double getOrigin() {
+		return origin;
+	}
+
+	public void setOrigin(Point2D.Double origin) {
+		this.origin = origin;
 	}
 
 	/**
