@@ -41,7 +41,7 @@ public class Model extends CS355Drawing {
 	//Notifies the observers
 	public void notifyObservers() {
 		super.notifyObservers();
-		System.out.println("Update Issued");
+//		System.out.println("Update Issued");
 	}
 	
 	@Override
@@ -106,7 +106,7 @@ public class Model extends CS355Drawing {
 
 	public void setCurrentMode(Shape.type currentMode) {
 		this.currentMode = currentMode;
-		System.out.println(currentMode.name());
+//		System.out.println(currentMode.name());
 	}
 
 	public Color getSelectedColor() {
