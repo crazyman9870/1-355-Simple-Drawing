@@ -119,10 +119,10 @@ public class Controller implements CS355Controller {
 				handleActiveRectangle(arg0);
 				break;
 			case CIRCLE:
-//				handleActiveCircle(arg0);
+				handleActiveCircle(arg0);
 				break;
 			case ELLIPSE:
-//				handleActiveEllipse(arg0);
+				handleActiveEllipse(arg0);
 				break;
 			case TRIANGLE:
 				break;
@@ -153,10 +153,10 @@ public class Controller implements CS355Controller {
 			{
 				double lengthX = arg0.getX() - square.getOrigin().x;
 				double lengthY = arg0.getY() - square.getOrigin().y;
-				double newlength = Math.min(lengthX, lengthY);
+				double newcorner = Math.min(lengthX, lengthY);
 				
 				square.setUpperLeft(square.getOrigin());
-				square.setSize(newlength);
+				square.setSize(newcorner);
 			}
 
 			//if the cursor is moving to the bottom left quad
@@ -164,10 +164,10 @@ public class Controller implements CS355Controller {
 			{
 				double lengthX = square.getOrigin().x - arg0.getX();
 				double lengthY = arg0.getY() - square.getOrigin().y;
-				double newlength = Math.min(lengthX, lengthY);
+				double newcorner = Math.min(lengthX, lengthY);
 				
-				square.setUpperLeft(new Point2D.Double(square.getOrigin().x - newlength, square.getOrigin().y));
-				square.setSize(newlength);
+				square.setUpperLeft(new Point2D.Double(square.getOrigin().x - newcorner, square.getOrigin().y));
+				square.setSize(newcorner);
 			}
 		}
 
@@ -179,10 +179,10 @@ public class Controller implements CS355Controller {
 			{
 				double lengthX = arg0.getX() - square.getOrigin().x;
 				double lengthY = square.getOrigin().y - arg0.getY();
-				double newlength = Math.min(lengthX, lengthY);
+				double newcorner = Math.min(lengthX, lengthY);
 				
-				square.setUpperLeft(new Point2D.Double(square.getOrigin().x, square.getOrigin().y  - newlength));
-				square.setSize(newlength);
+				square.setUpperLeft(new Point2D.Double(square.getOrigin().x, square.getOrigin().y  - newcorner));
+				square.setSize(newcorner);
 			}
 
 			//if the cursor is moving to the upper left quad
@@ -190,10 +190,10 @@ public class Controller implements CS355Controller {
 			{
 				double lengthX = square.getOrigin().x - arg0.getX();
 				double lengthY = square.getOrigin().y - arg0.getY();
-				double newlength = Math.min(lengthX, lengthY);
+				double newcorner = Math.min(lengthX, lengthY);
 				
-				square.setUpperLeft(new Point2D.Double(square.getOrigin().x - newlength, square.getOrigin().y - newlength));
-				square.setSize(newlength);
+				square.setUpperLeft(new Point2D.Double(square.getOrigin().x - newcorner, square.getOrigin().y - newcorner));
+				square.setSize(newcorner);
 			}
 		}
 		Model.instance().setLastShape(square);
@@ -211,12 +211,10 @@ public class Controller implements CS355Controller {
 			{
 				double lengthX = arg0.getX() - rectangle.getOrigin().x;
 				double lengthY = arg0.getY() - rectangle.getOrigin().y;
-//				double newlength = Math.min(lengthX, lengthY);
 				
 				rectangle.setUpperLeft(rectangle.getOrigin());
 				rectangle.setHeight(lengthY);
 				rectangle.setWidth(lengthX);
-//				rectangle.setSize(newlength);
 			}
 
 			//if the cursor is moving to the bottom left quad
@@ -224,10 +222,10 @@ public class Controller implements CS355Controller {
 			{
 				double lengthX = rectangle.getOrigin().x - arg0.getX();
 				double lengthY = arg0.getY() - rectangle.getOrigin().y;
-				double newlength = Math.min(lengthX, lengthY);
 				
-				rectangle.setUpperLeft(new Point2D.Double(rectangle.getOrigin().x - newlength, rectangle.getOrigin().y));
-//				rectangle.setSize(newlength);
+				rectangle.setUpperLeft(new Point2D.Double(rectangle.getOrigin().x - lengthX, rectangle.getOrigin().y));
+				rectangle.setHeight(lengthY);
+				rectangle.setWidth(lengthX);
 			}
 		}
 
@@ -239,10 +237,10 @@ public class Controller implements CS355Controller {
 			{
 				double lengthX = arg0.getX() - rectangle.getOrigin().x;
 				double lengthY = rectangle.getOrigin().y - arg0.getY();
-				double newlength = Math.min(lengthX, lengthY);
 				
-				rectangle.setUpperLeft(new Point2D.Double(rectangle.getOrigin().x, rectangle.getOrigin().y  - newlength));
-//				rectangle.setSize(newlength);
+				rectangle.setUpperLeft(new Point2D.Double(rectangle.getOrigin().x, rectangle.getOrigin().y  - lengthY));
+				rectangle.setHeight(lengthY);
+				rectangle.setWidth(lengthX);
 			}
 
 			//if the cursor is moving to the upper left quad
@@ -250,13 +248,129 @@ public class Controller implements CS355Controller {
 			{
 				double lengthX = rectangle.getOrigin().x - arg0.getX();
 				double lengthY = rectangle.getOrigin().y - arg0.getY();
-				double newlength = Math.min(lengthX, lengthY);
 				
-				rectangle.setUpperLeft(new Point2D.Double(rectangle.getOrigin().x - newlength, rectangle.getOrigin().y - newlength));
-//				rectangle.setSize(newlength);
+				rectangle.setUpperLeft(new Point2D.Double(rectangle.getOrigin().x - lengthX, rectangle.getOrigin().y - lengthY));
+				rectangle.setHeight(lengthY);
+				rectangle.setWidth(lengthX);
 			}
 		}
 		Model.instance().setLastShape(rectangle);
+	}
+	
+	public void handleActiveCircle(MouseEvent arg0)
+	{
+		
+		Circle circle = (Circle) Model.instance().getLastShape();
+		//if the cursor is moving below the upper left corner
+		if(arg0.getY() > circle.getOrigin().y)
+		{
+			//if the cursor is moving to the bottom right quad
+			if(arg0.getX() > circle.getOrigin().x)
+			{
+				double lengthX = arg0.getX() - circle.getOrigin().x;
+				double lengthY = arg0.getY() - circle.getOrigin().y;
+				double newcorner = Math.min(lengthX, lengthY);
+				
+				circle.setUpperLeft(circle.getOrigin());
+				circle.setRadius(newcorner / 2);
+			}
+
+			//if the cursor is moving to the bottom left quad
+			if(arg0.getX() < circle.getOrigin().x)
+			{
+				double lengthX = circle.getOrigin().x - arg0.getX();
+				double lengthY = arg0.getY() - circle.getOrigin().y;
+				double newcorner = Math.min(lengthX, lengthY);
+				
+				circle.setUpperLeft(new Point2D.Double(circle.getOrigin().x - newcorner, circle.getOrigin().y));
+				circle.setRadius(newcorner / 2);
+			}
+		}
+
+		//if the cursor is moving above the upper left corner
+		if(arg0.getY() < circle.getOrigin().y)
+		{
+			//if the cursor is moving to the upper right quad
+			if(arg0.getX() > circle.getOrigin().x)
+			{
+				double lengthX = arg0.getX() - circle.getOrigin().x;
+				double lengthY = circle.getOrigin().y - arg0.getY();
+				double newcorner = Math.min(lengthX, lengthY);
+				
+				circle.setUpperLeft(new Point2D.Double(circle.getOrigin().x, circle.getOrigin().y  - newcorner));
+				circle.setRadius(newcorner / 2);
+			}
+
+			//if the cursor is moving to the upper left quad
+			if(arg0.getX() < circle.getOrigin().x)
+			{
+				double lengthX = circle.getOrigin().x - arg0.getX();
+				double lengthY = circle.getOrigin().y - arg0.getY();
+				double newcorner = Math.min(lengthX, lengthY);
+				
+				circle.setUpperLeft(new Point2D.Double(circle.getOrigin().x - newcorner, circle.getOrigin().y - newcorner));
+				circle.setRadius(newcorner / 2);
+			}
+		}
+		Model.instance().setLastShape(circle);
+	}
+	
+	public void handleActiveEllipse(MouseEvent arg0)
+	{
+		
+		Ellipse ellipse = (Ellipse) Model.instance().getLastShape();
+		//if the cursor is moving below the upper left corner
+		if(arg0.getY() > ellipse.getOrigin().y)
+		{
+			//if the cursor is moving to the bottom right quad
+			if(arg0.getX() > ellipse.getOrigin().x)
+			{
+				double lengthX = arg0.getX() - ellipse.getOrigin().x;
+				double lengthY = arg0.getY() - ellipse.getOrigin().y;
+				
+				ellipse.setUpperLeft(ellipse.getOrigin());
+				ellipse.setWidth(lengthX);
+				ellipse.setHeight(lengthY);
+			}
+
+			//if the cursor is moving to the bottom left quad
+			if(arg0.getX() < ellipse.getOrigin().x)
+			{
+				double lengthX = ellipse.getOrigin().x - arg0.getX();
+				double lengthY = arg0.getY() - ellipse.getOrigin().y;
+				
+				ellipse.setUpperLeft(new Point2D.Double(ellipse.getOrigin().x - lengthX, ellipse.getOrigin().y));
+				ellipse.setWidth(lengthX);
+				ellipse.setHeight(lengthY);
+			}
+		}
+
+		//if the cursor is moving above the upper left corner
+		if(arg0.getY() < ellipse.getOrigin().y)
+		{
+			//if the cursor is moving to the upper right quad
+			if(arg0.getX() > ellipse.getOrigin().x)
+			{
+				double lengthX = arg0.getX() - ellipse.getOrigin().x;
+				double lengthY = ellipse.getOrigin().y - arg0.getY();
+				
+				ellipse.setUpperLeft(new Point2D.Double(ellipse.getOrigin().x, ellipse.getOrigin().y  - lengthY));
+				ellipse.setWidth(lengthX);
+				ellipse.setHeight(lengthY);
+			}
+
+			//if the cursor is moving to the upper left quad
+			if(arg0.getX() < ellipse.getOrigin().x)
+			{
+				double lengthX = ellipse.getOrigin().x - arg0.getX();
+				double lengthY = ellipse.getOrigin().y - arg0.getY();
+				
+				ellipse.setUpperLeft(new Point2D.Double(ellipse.getOrigin().x - lengthX, ellipse.getOrigin().y - lengthY));
+				ellipse.setWidth(lengthX);
+				ellipse.setHeight(lengthY);
+			}
+		}
+		Model.instance().setLastShape(ellipse);
 	}
 
 	@Override

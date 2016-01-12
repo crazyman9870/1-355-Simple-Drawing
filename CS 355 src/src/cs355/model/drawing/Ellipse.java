@@ -20,8 +20,7 @@ public class Ellipse extends Shape {
 	
 	
 	private Point2D.Double upperLeft;
-	
-	private Point2D.Double firstCorner;
+	private Point2D.Double origin;
 
 	/**
 	 * Basic constructor that sets all fields.
@@ -39,7 +38,7 @@ public class Ellipse extends Shape {
 		// Set fields.
 		this.center = center;
 		this.upperLeft = center;
-		this.firstCorner = center;
+		this.origin = center;
 		this.width = width;
 		this.height = height;
 	}
@@ -100,11 +99,11 @@ public class Ellipse extends Shape {
 		this.upperLeft = upperLeft;
 	}
 
-	public Point2D.Double getFirstCorner() {
-		return firstCorner;
+	public Point2D.Double getOrigin() {
+		return origin;
 	}
 
-	public void setFirstCorner(Point2D.Double firstCorner) {
-		this.firstCorner = firstCorner;
+	public void setOrigin(Point2D.Double origin) {
+		this.origin = origin;
 	}
 }
