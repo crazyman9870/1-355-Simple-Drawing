@@ -47,7 +47,6 @@ public class Controller implements CS355Controller {
 				}
 				
 				if(triangle.getCornerCount() == 1) {
-					//add second corner
 					triangle.setB(new Point2D.Double(arg0.getX(), arg0.getY()));
 					triangle.increaseCornerCount();
 				}
@@ -125,7 +124,7 @@ public class Controller implements CS355Controller {
 				handleActiveEllipse(arg0);
 				break;
 			case TRIANGLE:
-				break;
+				return;
 			default:
 				break;
 			}
