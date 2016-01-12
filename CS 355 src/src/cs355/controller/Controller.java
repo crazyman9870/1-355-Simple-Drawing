@@ -12,6 +12,7 @@ import cs355.model.drawing.*;
 public class Controller implements CS355Controller {
 
 	private boolean shapeSelected = false;
+	private boolean triangleActive = false;
 	
 	@Override
 	public void mouseClicked(MouseEvent arg0) {
@@ -371,6 +372,15 @@ public class Controller implements CS355Controller {
 		}
 		Model.instance().setLastShape(ellipse);
 	}
+	
+	public void triangleActiveCleanUp() {
+		shapeSelected = false;
+		triangleActive = false;
+		Triangle last = (Triangle) Model.instance().getLastShape();
+		if (last.getCornerCount() != 3) {
+			Model.instance().deleteLastShape();
+		}
+	}
 
 	@Override
 	public void colorButtonHit(Color c) {
@@ -381,31 +391,37 @@ public class Controller implements CS355Controller {
 	@Override
 	public void lineButtonHit() {
 		Model.instance().setCurrentMode(Shape.type.LINE);
+		if(triangleActive) triangleActiveCleanUp();
 	}
 
 	@Override
 	public void squareButtonHit() {
 		Model.instance().setCurrentMode(Shape.type.SQUARE);
+		if(triangleActive) triangleActiveCleanUp();
 	}
 
 	@Override
 	public void rectangleButtonHit() {
 		Model.instance().setCurrentMode(Shape.type.RECTANGLE);
+		if(triangleActive) triangleActiveCleanUp();
 	}
 
 	@Override
 	public void circleButtonHit() {
 		Model.instance().setCurrentMode(Shape.type.CIRCLE);
+		if(triangleActive) triangleActiveCleanUp();
 	}
 
 	@Override
 	public void ellipseButtonHit() {
 		Model.instance().setCurrentMode(Shape.type.ELLIPSE);
+		if(triangleActive) triangleActiveCleanUp();
 	}
 
 	@Override
 	public void triangleButtonHit() {
 		Model.instance().setCurrentMode(Shape.type.TRIANGLE);
+		triangleActive = true;
 	}
 
 	@Override

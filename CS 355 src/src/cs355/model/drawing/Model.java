@@ -124,9 +124,12 @@ public class Model extends CS355Drawing {
 	public Shape getLastShape()
 	{	return shapes.get(shapes.size() - 1);	}
 	
-	public void setLastShape(Shape newShape)
-	{	
+	public void setLastShape(Shape newShape) {	
 		shapes.remove(shapes.size() - 1);
 		shapes.add(newShape);
+	}
+	
+	public void deleteLastShape() {
+		shapes.remove(shapes.size()-1);
 	}
 }
