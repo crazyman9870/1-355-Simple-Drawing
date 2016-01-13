@@ -504,14 +504,13 @@ public class Controller implements CS355Controller {
 
 	@Override
 	public void saveDrawing(File file) {
-		// TODO Auto-generated method stub
-
+		Model.instance().save(file);
 	}
 
 	@Override
 	public void openDrawing(File file) {
-		// TODO Auto-generated method stub
-
+		Model.instance().open(file);
+		GUIFunctions.refresh();
 	}
 
 	@Override
