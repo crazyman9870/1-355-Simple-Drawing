@@ -14,7 +14,6 @@ public class Triangle extends Shape {
 	private Point2D.Double b;
 	private Point2D.Double c;
 	// Keeps track of how many corners have been set
-	private int cornerCount;
 
 	/**
 	 * Basic constructor that sets all fields.
@@ -33,8 +32,6 @@ public class Triangle extends Shape {
 		this.a = a;
 		this.b = b;
 		this.c = c;
-		
-		cornerCount = 1;
 	}
 
 	/**
@@ -83,17 +80,5 @@ public class Triangle extends Shape {
 	 */
 	public void setC(Point2D.Double c) {
 		this.c = c;
-	}
-
-	public int getCornerCount() {
-		return cornerCount;
-	}
-
-	public void setCornerCount(int cornerCount) {
-		this.cornerCount = cornerCount;
-	}
-	
-	public void increaseCornerCount() {
-		this.cornerCount++;
 	}
 }

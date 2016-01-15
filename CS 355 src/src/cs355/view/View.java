@@ -83,29 +83,22 @@ public class View implements ViewRefresher {
 		
 		if(currentShape.getShapeType() == Shape.type.TRIANGLE) {
 			//create a triangle from a Polygon and return it
-			if(((Triangle) currentShape).getCornerCount() == 3)
-			{
-				int[] x = new int[3];
-				int[] y = new int[3];
-				
-				x[0] = (int) ((Triangle) currentShape).getA().x;
-				x[1] = (int) ((Triangle) currentShape).getB().x;
-				x[2] = (int) ((Triangle) currentShape).getC().x;
-				
-				y[0] = (int) ((Triangle) currentShape).getA().y;
-				y[1] = (int) ((Triangle) currentShape).getB().y;
-				y[2] = (int) ((Triangle) currentShape).getC().y;
-				
-				Polygon tri = new Polygon();
-				tri.addPoint(x[0], y[0]);
-				tri.addPoint(x[1], y[1]);
-				tri.addPoint(x[2], y[2]);
-				return tri;
-			}
-			else
-			{
-				return null;
-			}
+			int[] x = new int[3];
+			int[] y = new int[3];
+			
+			x[0] = (int) ((Triangle) currentShape).getA().x;
+			x[1] = (int) ((Triangle) currentShape).getB().x;
+			x[2] = (int) ((Triangle) currentShape).getC().x;
+			
+			y[0] = (int) ((Triangle) currentShape).getA().y;
+			y[1] = (int) ((Triangle) currentShape).getB().y;
+			y[2] = (int) ((Triangle) currentShape).getC().y;
+			
+			Polygon tri = new Polygon();
+			tri.addPoint(x[0], y[0]);
+			tri.addPoint(x[1], y[1]);
+			tri.addPoint(x[2], y[2]);
+			return tri;
 		}
 		
 		return null;

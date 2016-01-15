@@ -52,6 +52,7 @@ public class Model extends CS355Drawing {
 	@Override
 	public int addShape(Shape s) {
 		shapes.add(s);
+		System.out.println(shapes.size());
 		return shapes.size();
 	}
 
@@ -131,5 +132,10 @@ public class Model extends CS355Drawing {
 	
 	public void deleteLastShape() {
 		shapes.remove(shapes.size()-1);
+	}
+	
+	public void changeMade() {
+		setChanged();
+		notifyObservers();
 	}
 }
